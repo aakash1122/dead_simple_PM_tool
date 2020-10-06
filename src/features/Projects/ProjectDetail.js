@@ -57,9 +57,11 @@ export const ProjectDetail = () => {
         {activeProject.wip &&
           activeProject.wip.map((todo, i) => (
             <Grid xs={24} key={i}>
-              <Checkbox checked={false} size="large">
-                <Text size="1.5rem">{todo}</Text>
-              </Checkbox>
+              <Card>
+                <Checkbox checked={false} size="large">
+                  <Text size="1.5rem">{todo}</Text>
+                </Checkbox>
+              </Card>
             </Grid>
           ))}
       </Grid.Container>
