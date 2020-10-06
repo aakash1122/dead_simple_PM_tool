@@ -1,56 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Button, Text, Grid, Spacer, Divider } from "@geist-ui/react";
+import { useDispatch } from "react-redux";
+
+import { toggleModal } from "./features/Projects/ProjectSlice";
+import Project from "./features/Projects/Projects";
+import ProjectAddModal from "./components/ProjectAddModal";
+import { ProjectDetail } from "./features/Projects/ProjectDetail";
 
 function App() {
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Text h2>Dead Simple PM Tool</Text>
+      <Divider />
+      <Spacer y={1} />
+      <Button type="secondary" shadow onClick={() => dispatch(toggleModal())}>
+        Add New Project
+      </Button>
+      <Spacer y={3} />
+      <ProjectAddModal />
+      <Grid.Container gap={4} justify="center">
+        <Grid xs={24} md={12}>
+          <ProjectDetail />
+        </Grid>
+        <Grid xs={24} md={12}>
+          <Project />
+        </Grid>
+      </Grid.Container>
     </div>
   );
 }
