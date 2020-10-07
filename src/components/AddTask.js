@@ -8,26 +8,27 @@ const AddTask = () => {
   const [task, setTask] = useState("");
   const dispatch = useDispatch();
 
+  const addTaskHandler = () => {
+    if (task.trim().length) {
+      setTask("");
+      dispatch(addTask(task));
+    }
+  };
+
   return (
     <Row gap={0.8} style={{ marginBottom: "15px" }}>
       <Col span={14}>
         <Input
           width="100%"
           size="large"
-          placeholder="Large Input"
+          value={task}
+          placeholder="New Task...."
+          required
           onChange={(e) => setTask(e.target.value)}
         />
       </Col>
       <Col span={10}>
-        <Button
-          type="secondary"
-          ghost
-          size="medium"
-          onClick={() => {
-            dispatch(addTask(task));
-            setTask("");
-          }}
-        >
+        <Button type="secondary" ghost size="medium" onClick={addTaskHandler}>
           ADD TASK
         </Button>
         <Button

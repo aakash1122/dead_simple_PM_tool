@@ -22,6 +22,7 @@ const Project = ({ data }) => {
       hoverable
       type={isActive ? "violet" : "default"}
       onClick={() => dispatch(activateProject(id))}
+      style={{ cursor: "pointer" }}
     >
       <Text h3>{name}</Text>
     </Card>

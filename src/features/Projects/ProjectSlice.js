@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v5 } from "uuid";
+import { nanoid } from "@reduxjs/toolkit";
 
 export const projectSlice = createSlice({
   name: "project",
@@ -23,7 +23,7 @@ export const projectSlice = createSlice({
   reducers: {
     addProject: (state, action) => {
       state.projects.push({
-        id: "Dfasfd",
+        id: nanoid(),
         name: action.payload,
         wip: [],
         coompleted: [],
