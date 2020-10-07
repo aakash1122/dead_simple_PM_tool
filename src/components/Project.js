@@ -15,7 +15,6 @@ const Project = ({ data }) => {
   const activeProject = useSelector(selectActiveProject);
 
   const isActive = activeProject.id === id;
-  console.log(isActive);
 
   return (
     <Card

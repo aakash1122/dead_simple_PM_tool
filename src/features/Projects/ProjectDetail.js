@@ -3,7 +3,6 @@ import { Card, Checkbox, Col, Divider, Grid, Row, Text } from "@geist-ui/react";
 import Edit2 from "@geist-ui/react-icons/edit2";
 import Plus from "@geist-ui/react-icons/plus";
 import { useSelector, useDispatch } from "react-redux";
-
 //
 import {
   selectActiveProject,
@@ -11,6 +10,7 @@ import {
   toggleShowAddTask,
 } from "./ProjectSlice";
 import AddTask from "../../components/AddTask";
+import Task from "../../components/Task";
 
 export const ProjectDetail = () => {
   const dispatch = useDispatch();
@@ -56,13 +56,11 @@ export const ProjectDetail = () => {
         ) : null}
         {activeProject.wip &&
           activeProject.wip.map((todo, i) => (
-            <Grid xs={24} key={i}>
-              <Card>
-                <Checkbox checked={false} size="large">
-                  <Text size="1.5rem">{todo}</Text>
-                </Checkbox>
-              </Card>
-            </Grid>
+            <Task data={todo} key={todo.id} />
+          ))}
+        {activeProject.completed &&
+          activeProject.completed.map((todo, i) => (
+            <Task data={todo} key={todo.id} done />
           ))}
       </Grid.Container>
     </Card>

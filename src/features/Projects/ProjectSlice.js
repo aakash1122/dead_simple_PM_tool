@@ -10,11 +10,24 @@ export const projectSlice = createSlice({
         id: "123",
         name: "Todo Project",
         wip: [
-          "add todo create functionality",
-          "add styling to done todos",
-          "last on to do",
+          {
+            task: "add todo create functionality",
+            id: "2134",
+            doing: true,
+          },
+          {
+            task: "add styling to done todos",
+            id: "2132",
+            doing: false,
+          },
         ],
-        completed: ["add navbar"],
+        completed: [{ task: "add navbar", id: "84" }],
+      },
+      {
+        id: "1232",
+        name: "Todo Project 2",
+        wip: [],
+        // completed: [{ task: "add navbar", id: "84" }],
       },
     ],
     activeProjectId: "123",
@@ -32,10 +45,11 @@ export const projectSlice = createSlice({
     addTask: (state, { payload }) => {
       state.projects.forEach((project) => {
         if (project.id === state.activeProjectId) {
-          project.wip.push(payload);
+          project.wip.push({ task: payload, id: nanoid() });
         }
       });
     },
+    doingTask: (state) => {},
     toggleShowAddTask: (state) => {
       state.showAddTask = !state.showAddTask;
     },
