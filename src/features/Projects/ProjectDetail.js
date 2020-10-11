@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Checkbox, Col, Divider, Grid, Row, Text } from "@geist-ui/react";
+import { Card, Col, Divider, Grid, Row, Text } from "@geist-ui/react";
 import Edit2 from "@geist-ui/react-icons/edit2";
 import Plus from "@geist-ui/react-icons/plus";
 import { useSelector, useDispatch } from "react-redux";
@@ -56,11 +56,12 @@ export const ProjectDetail = () => {
         ) : null}
         {activeProject.wip &&
           activeProject.wip.map((todo, i) => (
-            <Task data={todo} key={todo.id} />
+            <Task data={todo} key={todo.id} taskIndex={i} />
           ))}
+        {/* completed */}
         {activeProject.completed &&
           activeProject.completed.map((todo, i) => (
-            <Task data={todo} key={todo.id} done />
+            <Task data={todo} key={todo.id} done taskIndex={i} />
           ))}
       </Grid.Container>
     </Card>
