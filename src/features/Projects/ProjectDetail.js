@@ -1,4 +1,14 @@
-import { Card, Col, Divider, Grid, Row } from "@geist-ui/react";
+import {
+  Button,
+  Card,
+  Col,
+  Divider,
+  Grid,
+  Row,
+  Spacer,
+  Tabs,
+  Text,
+} from "@geist-ui/react";
 import Plus from "@geist-ui/react-icons/plus";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,28 +55,52 @@ export const ProjectDetail = () => {
           </Col>
         </Row>
         <Divider />
-        <Grid.Container gap={1.8} style={{ textAlign: "left" }}>
-          {!showAddTask ? (
-            <Grid xs={24}>
-              <Plus size={22} onClick={() => dispatch(toggleShowAddTask())} />
-            </Grid>
-          ) : null}
+        <div style={{ padding: "15px 5px" }}>
           {showAddTask ? (
-            <Grid xs={24}>
-              <AddTask />
-            </Grid>
-          ) : null}
-          {activeProject.wip &&
-            activeProject.wip.map((todo, i) => (
-              <Task data={todo} key={todo.id} taskIndex={i} />
-            ))}
-          {/* completed */}
-          {activeProject.completed &&
-            activeProject.completed.map((todo, i) => (
-              <Task data={todo} key={todo.id} done taskIndex={i} />
-            ))}
-        </Grid.Container>
+            <AddTask />
+          ) : (
+            <Button
+              auto
+              iconRight={<Plus size={22} />}
+              onClick={() => dispatch(toggleShowAddTask())}
+            />
+          )}
+        </div>
+        <Tabs initialValue="1">
+          <Spacer y={1} />
+          <Grid.Container gap={1.8} style={{ textAlign: "left" }}>
+            <Tabs.Item label="To-Do" value="1">
+              {activeProject.wip.length ? (
+                activeProject.wip.map((todo, i) => (
+                  <Task data={todo} key={todo.id} taskIndex={i} />
+                ))
+              ) : (
+                <Text h4 style={textStyle}>
+                  No To-Do
+                </Text>
+              )}
+            </Tabs.Item>
+            {/* completed */}
+            <Tabs.Item label="Done" value="2">
+              {activeProject.completed.length ? (
+                activeProject.completed.map((todo, i) => (
+                  <Task data={todo} key={todo.id} done taskIndex={i} />
+                ))
+              ) : (
+                <Text h4 style={textStyle}>
+                  No completed task.
+                </Text>
+              )}
+            </Tabs.Item>
+          </Grid.Container>
+        </Tabs>
       </Card>
     </div>
   );
+};
+
+const textStyle = {
+  margin: "10px 0px",
+  textAlign: "center",
+  width: "100%",
 };
