@@ -58,8 +58,8 @@ const ProjectTitle = ({ name }) => {
         )}
 
         {!allowEdit && (
-          <div style={{ marginLeft: 20 }}>
-            <Edit2 size={20} onClick={() => setAllowEdit(true)} />
+          <div style={{ marginLeft: 20, cursor: "pointer" }}>
+            <Edit2 size={18} onClick={() => setAllowEdit(true)} />
           </div>
         )}
       </div>

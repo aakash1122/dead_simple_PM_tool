@@ -4,7 +4,7 @@ import { Button, Text, Grid, Spacer, Divider } from "@geist-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toggleModal } from "./features/Projects/ProjectSlice";
-import Project from "./features/Projects/Projects";
+import Projects from "./features/Projects/Projects";
 import ProjectAddModal from "./components/ProjectAddModal";
 import { ProjectDetail } from "./features/Projects/ProjectDetail";
 
@@ -48,7 +48,7 @@ function App() {
               <ProjectDetail />
             </Grid>
             <Grid xs={24} md={12}>
-              <Project />
+              <Projects />
             </Grid>
           </Grid.Container>
         </>

@@ -9,11 +9,17 @@ import {
 } from "../features/Projects/ProjectSlice";
 
 const ProjectAddModal = () => {
+  const dispatch = useDispatch();
+
   const [title, setTitle] = useState("");
   const [emptyTitle, setEmptyTitle] = useState(false);
   const modalState = useSelector(selectModal);
 
-  const dispatch = useDispatch();
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      handleAdd();
+    }
+  };
 
   const handleAdd = () => {
     if (!title.trim().length) {
@@ -38,6 +44,7 @@ const ProjectAddModal = () => {
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            onKeyPress={handleEnter}
           />
           <Spacer y={1} />
           <Button ghost type="secondary" onClick={handleAdd}>

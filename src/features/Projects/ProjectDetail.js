@@ -22,7 +22,7 @@ export const ProjectDetail = () => {
   const activeProject = useSelector(selectActiveProject);
   const showAddTask = useSelector(selectShowAddTask);
   return (
-    <>
+    <div className="project-details">
       <DeletePopup show={deleteConfirmPopup} setShow={setDeleteConfirmPopup} />
       <Card>
         <Row
@@ -67,6 +67,6 @@ export const ProjectDetail = () => {
             ))}
         </Grid.Container>
       </Card>
-    </>
+    </div>
   );
 };

@@ -8,7 +8,7 @@ import Project from "../../components/Project";
 const Projects = () => {
   const allProjects = useSelector(selectProjects);
   return (
-    <div>
+    <div className="projects">
       <Grid.Container gap={3} justify="center">
         {allProjects.map((project, i) => (
           <Grid xs={24} md={12} key={i}>
