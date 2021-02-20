@@ -5,27 +5,9 @@ export const projectSlice = createSlice({
   name: "project",
   initialState: {
     addModal: false,
-    activeProjectId: "123",
+    activeProjectId: "",
     showAddTask: false,
-    projects: [
-      {
-        id: "123",
-        name: "Todo Project",
-        wip: [
-          {
-            task: "add todo create functionality",
-            id: "2134",
-            doing: false,
-          },
-          {
-            task: "add styling to done todos",
-            id: "2132",
-            doing: false,
-          },
-        ],
-        completed: [],
-      },
-    ],
+    projects: [],
   },
   reducers: {
     addProject: (state, action) => {
