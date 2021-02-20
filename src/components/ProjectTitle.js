@@ -1,9 +1,8 @@
 import { Button, Input } from "@geist-ui/react";
-import Edit2 from "@geist-ui/react-icons/edit2";
-import React from "react";
-import { useState } from "react";
 import Check from "@geist-ui/react-icons/check";
-import { useSelector, useDispatch } from "react-redux";
+import Edit2 from "@geist-ui/react-icons/edit2";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { updateProjectName } from "../features/Projects/ProjectSlice";
 
 const ProjectTitle = ({ name }) => {
@@ -12,9 +11,6 @@ const ProjectTitle = ({ name }) => {
   const [newName, setNewName] = useState(name);
   //state to toggle input
   const [allowEdit, setAllowEdit] = useState(false);
-
-  // get active project id
-  const activeProjectId = useSelector((state) => state.project.activeProjectId);
 
   /**
    * update name of a project and hide the input element
@@ -56,7 +52,9 @@ const ProjectTitle = ({ name }) => {
             />
           </>
         ) : (
-          <h4>{name}</h4>
+          <div>
+            <h4>{name}</h4>
+          </div>
         )}
 
         {!allowEdit && (

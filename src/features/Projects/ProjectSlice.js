@@ -5,26 +5,26 @@ export const projectSlice = createSlice({
   name: "project",
   initialState: {
     addModal: false,
-    activeProjectId: "123",
+    activeProjectId: "",
     showAddTask: false,
     projects: [
-      {
-        id: "123",
-        name: "Todo Project",
-        wip: [
-          {
-            task: "add todo create functionality",
-            id: "2134",
-            doing: false,
-          },
-          {
-            task: "add styling to done todos",
-            id: "2132",
-            doing: false,
-          },
-        ],
-        completed: [],
-      },
+      // {
+      //   id: "123",
+      //   name: "Todo Project",
+      //   wip: [
+      //     {
+      //       task: "add todo create functionality",
+      //       id: "2134",
+      //       doing: false,
+      //     },
+      //     {
+      //       task: "add styling to done todos",
+      //       id: "2132",
+      //       doing: false,
+      //     },
+      //   ],
+      //   completed: [],
+      // },
     ],
   },
   reducers: {
@@ -35,6 +35,12 @@ export const projectSlice = createSlice({
         wip: [],
         completed: [],
       });
+      // set default active if not set yet
+      if (!state.activeProjectId) {
+        state.activeProjectId = state.projects.length
+          ? state.projects[0].id
+          : "";
+      }
     },
     addTask: (state, { payload }) => {
       state.projects.forEach((project) => {
@@ -95,11 +101,26 @@ export const projectSlice = createSlice({
       // update projects value
       state.projects = updatedProjects;
     },
+    deleteProject: (state) => {
+      // delete project based on active id
+      let leftProjects = state.projects.filter(
+        (project) => project.id !== state.activeProjectId
+      );
+      state.projects = leftProjects;
+
+      // update active project id if projects has atleast one member
+      if (state.projects.length >= 1) {
+        state.activeProjectId = state.projects[0].id;
+      } else {
+        state.activeProjectId = "";
+      }
+    },
   },
 });
 
 export const {
   addProject,
+  deleteProject,
   addTask,
   toggleModal,
   toggleShowAddTask,
