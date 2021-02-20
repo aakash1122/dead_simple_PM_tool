@@ -11,6 +11,7 @@ import {
 } from "./ProjectSlice";
 import AddTask from "../../components/AddTask";
 import Task from "../../components/Task";
+import ProjectTitle from "../../components/ProjectTitle";
 
 export const ProjectDetail = () => {
   const dispatch = useDispatch();
@@ -25,21 +26,7 @@ export const ProjectDetail = () => {
         align="middle"
       >
         <Col>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              h3
-              type="success"
-              style={{ textAlign: "left", margin: "0px 15px 0px 0px" }}
-            >
-              {activeProject.name}
-            </Text>
-            <Edit2 size={20} />
-          </div>
+          <ProjectTitle name={activeProject.name} />
         </Col>
       </Row>
       <Divider />

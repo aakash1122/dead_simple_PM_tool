@@ -1,11 +1,12 @@
-import React from "react";
 import { Button, Card, Grid, Text } from "@geist-ui/react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { addToDoing, addToDone } from "../features/Projects/ProjectSlice";
 
 const styles = {
   task: {
     textTransform: "Capitalize",
+    margin: 0,
   },
   actionWrapper: {
     width: "fit-content",
@@ -19,7 +20,7 @@ const Task = ({ data, done, taskIndex }) => {
   return (
     <Grid xs={24}>
       <Card type={done ? "cyan" : data.doing ? "secondary" : "default"}>
-        <Text size="1.5rem" style={styles.task}>
+        <Text size="1.2rem" style={styles.task}>
           {data.task}
         </Text>
         <div style={styles.actionWrapper}>

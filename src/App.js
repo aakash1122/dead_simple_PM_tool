@@ -13,7 +13,9 @@ function App() {
 
   return (
     <div className="App">
-      <Text h2>Dead Simple PM Tool</Text>
+      <Text h3 type="secondary">
+        Dead Simple PM Tool
+      </Text>
       <Divider />
       <Spacer y={1} />
       <Button type="secondary" shadow onClick={() => dispatch(toggleModal())}>

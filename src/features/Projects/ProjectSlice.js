@@ -53,7 +53,6 @@ export const projectSlice = createSlice({
     },
 
     addToDone: (state, { payload }) => {
-      console.log(payload);
       // find project id
       let { projects, activeProjectId } = state;
       let task;
@@ -81,6 +80,21 @@ export const projectSlice = createSlice({
     activateProject: (state, action) => {
       state.activeProjectId = action.payload;
     },
+    updateProjectName: (state, { payload }) => {
+      // update project name based on id
+      let updatedProjects = state.projects.map((project) => {
+        if (project.id === state.activeProjectId) {
+          // if id matched then update the name
+          return {
+            ...project,
+            name: payload,
+          };
+        }
+        return project;
+      });
+      // update projects value
+      state.projects = updatedProjects;
+    },
   },
 });
 
@@ -93,6 +107,7 @@ export const {
   addToDone,
   closeModal,
   activateProject,
+  updateProjectName,
 } = projectSlice.actions;
 
 export const selectProjects = (state) => state.project.projects;
