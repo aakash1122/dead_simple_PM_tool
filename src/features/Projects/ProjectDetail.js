@@ -16,6 +16,7 @@ import AddTask from "../../components/AddTask";
 import ProjectTitle from "../../components/ProjectTitle";
 import Task from "../../components/Task";
 import { ReactComponent as Trash } from "../../assets/trash.svg";
+import { AnimatePresence } from "framer-motion";
 
 import {
   selectActiveProject,
@@ -70,15 +71,17 @@ export const ProjectDetail = () => {
           <Spacer y={1} />
           <Grid.Container gap={1.8} style={{ textAlign: "left" }}>
             <Tabs.Item label="Task" value="1">
-              {activeProject.wip.length ? (
-                activeProject.wip.map((todo, i) => (
-                  <Task data={todo} key={todo.id} taskIndex={i} />
-                ))
-              ) : (
-                <Text h4 style={textStyle}>
-                  No Task
-                </Text>
-              )}
+              <AnimatePresence>
+                {activeProject.wip.length ? (
+                  activeProject.wip.map((todo, i) => (
+                    <Task data={todo} key={todo.id} taskIndex={i} />
+                  ))
+                ) : (
+                  <Text h4 style={textStyle}>
+                    No Task
+                  </Text>
+                )}
+              </AnimatePresence>
             </Tabs.Item>
             {/* completed */}
             <Tabs.Item label="Done" value="2">
