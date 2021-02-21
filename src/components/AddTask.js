@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Col, Input, Row } from "@geist-ui/react";
 import { useDispatch } from "react-redux";
 import { addTask, toggleShowAddTask } from "../features/Projects/ProjectSlice";
 import { Delete } from "@geist-ui/react-icons";
 
 const AddTask = () => {
+  // input ref
+  let inputRef = useRef(null);
+
   const [task, setTask] = useState("");
   const dispatch = useDispatch();
+
+  // focus input on render
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const addTaskHandler = () => {
     if (task.trim().length) {
@@ -25,6 +33,7 @@ const AddTask = () => {
     <Row gap={0.8} style={{ marginBottom: "15px" }}>
       <Col span={14}>
         <Input
+          ref={inputRef}
           width="100%"
           size="large"
           value={task}

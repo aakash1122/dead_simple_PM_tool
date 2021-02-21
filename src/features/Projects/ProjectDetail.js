@@ -69,14 +69,14 @@ export const ProjectDetail = () => {
         <Tabs initialValue="1">
           <Spacer y={1} />
           <Grid.Container gap={1.8} style={{ textAlign: "left" }}>
-            <Tabs.Item label="To-Do" value="1">
+            <Tabs.Item label="Task" value="1">
               {activeProject.wip.length ? (
                 activeProject.wip.map((todo, i) => (
                   <Task data={todo} key={todo.id} taskIndex={i} />
                 ))
               ) : (
                 <Text h4 style={textStyle}>
-                  No To-Do
+                  No Task
                 </Text>
               )}
             </Tabs.Item>

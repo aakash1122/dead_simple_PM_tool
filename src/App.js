@@ -22,7 +22,7 @@ function App() {
       <Spacer y={1} />
       {!projects.length ? (
         <>
-          <Text h2 type="success">
+          <Text h2 type="success" style={{ marginBottom: 30 }}>
             You don't have any project.
           </Text>
           <Button
