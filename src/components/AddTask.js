@@ -15,6 +15,12 @@ const AddTask = () => {
     }
   };
 
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      addTaskHandler();
+    }
+  };
+
   return (
     <Row gap={0.8} style={{ marginBottom: "15px" }}>
       <Col span={14}>
@@ -25,10 +31,11 @@ const AddTask = () => {
           placeholder="New Task...."
           required
           onChange={(e) => setTask(e.target.value)}
+          onKeyPress={handleEnter}
         />
       </Col>
       <Col span={10}>
-        <Button type="secondary" ghost size="medium" onClick={addTaskHandler}>
+        <Button type="success" size="medium" onClick={addTaskHandler}>
           ADD TASK
         </Button>
         <Button
